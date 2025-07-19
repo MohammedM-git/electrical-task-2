@@ -1,0 +1,50 @@
+
+// Create servo objects
+Servo servo1;
+Servo servo2;
+Servo servo3;
+Servo servo4;
+
+// Assign pins
+const int servoPin1 = 1;
+const int servoPin2 = 2;
+const int servoPin3 = 3;
+const int servoPin4 = 4;
+
+void setup() {
+  // Attach each servo
+  servo1.attach(servoPin1);
+  servo2.attach(servoPin2);
+  servo3.attach(servoPin3);
+  servo4.attach(servoPin4);
+
+  unsigned long startTime = millis();
+
+  // Run sweep for 2 seconds
+  while (millis() - startTime < 2000) {
+    for (int angle = 0; angle <= 180; angle++) {
+      servo1.write(angle);
+      servo2.write(angle);
+      servo3.write(angle);
+      servo4.write(angle);
+      delay(5); // Small delay for smoother motion
+    }
+    for (int angle = 180; angle >= 0; angle--) {
+      servo1.write(angle);
+      servo2.write(angle);
+      servo3.write(angle);
+      servo4.write(angle);
+      delay(5);
+    }
+  }
+
+  // Hold all servos at 90 degrees
+  servo1.write(90);
+  servo2.write(90);
+  servo3.write(90);
+  servo4.write(90);
+}
+
+void loop() {
+  // Nothing in loop – all action done in setup
+}
